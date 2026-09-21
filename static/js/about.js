@@ -1,0 +1,1 @@
+console.log("Hello class this is Edwin from statics!");
