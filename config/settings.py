@@ -24,8 +24,9 @@ SECRET_KEY = 'django-insecure-&f_^fmxb%9p+7z8_9xd#djnf=ri$p+#e&b*n68j%q1tapn5xfz
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# If you change this to true you can see what the site looks like in PROD
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -39,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pages',
     'posts',
-    'accounts'
+    'accounts',
+    'crispy_forms',
+    'crispy_bootstrap5',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +135,7 @@ MAILERS = {
 }
 
 LOGIN_REDIRECT_URL = 'home'
+
+# Crispy Variables
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'

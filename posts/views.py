@@ -8,6 +8,7 @@ from django.views.generic import (
 from django.urls import reverse_lazy
 from .models import Post
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 # Create your views here.
 class PostListView(ListView):   #GET Request --> List
@@ -18,12 +19,12 @@ class PostListView(ListView):   #GET Request --> List
     #context_object_name attribute allow us to change the variable name on how we call it inside of the template
     context_object_name = "posts"
 
-class PostDetailView(DetailView):   #GET Request --> Single Object
+class PostDetailView(LoginRequiredMixin, DetailView):   #GET Request --> Single Object
     template_name = "postsTemplates/detail.html"
     model = Post
     context_object_name = "single_post"
 
-class PostCreateView(CreateView):   # GET Request first --> Display Empty form
+class PostCreateView(LoginRequiredMixin, CreateView):   # GET Request first --> Display Empty form
                                     # POST Request second --> create new object 
     template_name = "postsTemplates/new.html"
     model = Post
@@ -35,14 +36,28 @@ class PostCreateView(CreateView):   # GET Request first --> Display Empty form
         form.instance.author = User.objects.last()
         return super().form_valid(form)
 
-class PostUpdateView(UpdateView):   # GET Request first --> Display filled form
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):   # GET Request first --> Display filled form
                                     # POST Request second --> Update modified item
     template_name = "postsTemplates/edit.html"
     model = Post
     fields = ["title", "subtitle", "body"]
 
-class PostDeleteView(DeleteView):    
+    def test_func(self):
+        post = self.get_object()
+        if self.request.user == post.author:
+            return True
+        else:
+            return False
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):    
     template_name = "postsTemplates/delete.html"
     model = Post
     # Success_url attribute allow us to redirect the user to ther view if the request was successful 
     success_url = reverse_lazy("post_list")
+
+    def test_func(self):
+            post = self.get_object()
+            if self.request.user == post.author:
+                return True
+            else:
+                return False
