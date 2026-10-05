@@ -13,12 +13,34 @@ from django.urls import reverse
 
 class Status(models.Model):
     name = models.CharField(max_length=128, unique=True)
-    description = models.CharField(
-        max_length=200, help_text="Write a description about the status")
+    description = models.CharField(max_length=200, help_text="Write a description about the status")
+
+    class Meta:
+        verbose_name = "Status"
+        verbose_name_plural = "Statuses"
 
     def __str__(self):      #toString
         return self.name
-    
+
+
+class Comment(models.Model):
+    author = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    posts = models.ManyToManyField(
+        #Many to many: a comment can be linked to many posts, a post can have many comments
+        "Post",
+        related_name="comments"
+    )
+
+    class Meta:
+        ordering = ["created_on"]
+
+    def __str__(self):
+        return f"Comment by {self.author} on {self.created_on:%Y-%m-%d %H:%M}"
 
 class Post(models.Model):
     title = models.CharField(max_length=128)
@@ -28,6 +50,10 @@ class Post(models.Model):
     author = models.ForeignKey(
         User,
         on_delete=models.CASCADE
+    )
+    status = models.ForeignKey(
+        Status,
+        on_delete=models.DO_NOTHING
     )
 
     def __str__(self):      #toString
