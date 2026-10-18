@@ -6,13 +6,13 @@
 
 {% block content %}
     <h1>All Posts</h1>
-    <ul>
+    <ul class="post-list">
         {% for item in posts %}
-            <li>
+            <li class="post-card">
                 <h3>Title: {{ item.title }}</h3>
                 <span><strong>Author: {{ item.author }}</strong></span>
                 <span><strong>Status: {{ item.status }}</strong></span>
-                <p>Body: {{ item.body|truncatechars:5 }}</p>
+                <p>Body: {{ item.body|truncatechars:160 }}</p>
                 <a href="{% url 'post_detail' item.id %}">Continue reading...</a>
             </li>
         {% endfor %}

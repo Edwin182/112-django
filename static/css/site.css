@@ -1,0 +1,114 @@
+body {
+    background-color: #b2d8d3;
+}
+h1 {
+    color: #174b45;
+    font-size: 32px;
+    text-transform: none;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+.container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    border: 3px solid #174b45;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+.navbar {
+    background-color: #d5eae6;
+    border-bottom: 3px solid #174b45;
+    padding: 15px;
+}
+
+.navbar-brand {
+    color: #174b45;
+    font-weight: bold;
+    font-size: 26px;
+}
+
+.navbar .nav-link {
+    color: #174b45;
+}
+
+.navbar .nav-link:hover {
+    background-color: #b2d8d3;
+    border-radius: 5px;
+}
+.post-list {
+    list-style: none;
+    padding: 0;
+}
+
+.post-card {
+    background-color: #d5eae6;
+    border: 1px solid #174b45;
+    border-left: 5px solid #174b45;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.post-card h3 {
+    color: #174b45;
+}
+
+.post-card a {
+    color: #174b45;
+    font-weight: bold;
+}
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.btn-success {
+    background-color: #174b45;
+    border-color: #174b45;
+}
+
+.btn-success:hover {
+    background-color: #103832;
+    border-color: #103832;
+}
+.post-form {
+    background-color: #d5eae6;
+    padding: 25px;
+    border: 1px solid #174b45;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+.post-form label {
+    display: block;
+    color: #174b45;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.post-form input[type="text"],
+.post-form textarea,
+.post-form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #174b45;
+    border-radius: 5px;
+}
+.comment-card {
+    background-color: #d5eae6;
+    border-left: 4px solid #174b45;
+    border-radius: 8px;
+    padding: 15px;
+}
+
+.comment-card strong {
+    color: #174b45;
+}
+
+.comment-card small {
+    display: block;
+    margin-bottom: 10px;
+}
